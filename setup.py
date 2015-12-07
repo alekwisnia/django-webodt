@@ -3,26 +3,24 @@
 from distutils.core import setup
 
 import os
+from setuptools import find_packages
 # import sys
 # reload(sys).setdefaultencoding("UTF-8")
 
-
-def read(fname):
-    try:
-        return open(os.path.join(os.path.dirname(__file__), fname)).read()
-    except:
-        return ''
+with open(os.path.join(os.path.dirname(__file__), 'README.rst')) as readme:
+    README = readme.read()
+os.chdir(os.path.normpath(os.path.join(os.path.abspath(__file__), os.pardir)))
 
 setup(
     name='django-webodt',
     version='0.3.1',
     author='NetAngels',
     author_email='info@netangels.ru',
-    packages=['webodt', 'webodt.converters', 'webodt.tests'],
+    packages=find_packages(),
     url='http://github.com/netangels/django-webodt',
     license='BSD License',
     description=u'ODF template handler and odt to html, pdf, doc, etc converter',
-    long_description=read('README.rst'),
+    long_description=README,
     install_requires=[
         'Django',
         'lxml',
