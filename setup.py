@@ -2,8 +2,10 @@
 # -*- coding: utf8 -*-
 from distutils.core import setup
 
-import os, sys
-reload(sys).setdefaultencoding("UTF-8")
+import os
+# import sys
+# reload(sys).setdefaultencoding("UTF-8")
+
 
 def read(fname):
     try:
@@ -18,10 +20,10 @@ setup(
     author_email='info@netangels.ru',
     packages=['webodt', 'webodt.converters', 'webodt.tests'],
     url='http://github.com/netangels/django-webodt',
-    license = 'BSD License',
-    description = u'ODF template handler and odt to html, pdf, doc, etc converter',
-    long_description = read('README.rst'),
-    install_requires = [
+    license='BSD License',
+    description=u'ODF template handler and odt to html, pdf, doc, etc converter',
+    long_description=read('README.rst'),
+    install_requires=[
         'Django',
         'lxml',
     ],
