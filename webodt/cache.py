@@ -5,6 +5,7 @@ from webodt.conf import WEBODT_CACHE_DIR
 from django.conf import settings
 from webodt import Document
 
+
 class CacheManager(object):
 
     def __init__(self):

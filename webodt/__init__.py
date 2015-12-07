@@ -13,7 +13,7 @@ import tempfile
 import shutil
 import time
 from lxml import etree
-from cStringIO import StringIO
+from io import StringIO, BufferedIOBase
 from django.template import Template
 from django.utils.encoding import smart_str
 from webodt.conf import WEBODT_TEMPLATE_PATH, WEBODT_ODF_TEMPLATE_PREPROCESSORS, WEBODT_TMP_DIR
@@ -197,7 +197,7 @@ class _UnpackedODFHandler(object):
         fd.close()
         return data
 
-    def get_file(self,path):
+    def get_file(self, path):
         fd = open(os.path.join(self.dirname, path), 'r')
         data = fd.read()
         fd.close()
@@ -208,14 +208,14 @@ class _UnpackedODFHandler(object):
         shutil.copytree(self.dirname, dstdir)
 
 
-class Document(file):
+class Document(BufferedIOBase):
 
     def __init__(self, filename, mode='rb', buffering=1, delete_on_close=True):
-        file.__init__(self, filename, mode, buffering)
+        super().__init__(filename, mode, buffering)
         self.delete_on_close = delete_on_close
 
     def close(self):
-        file.close(self)
+        super().close()
         if self.delete_on_close:
             self.delete()
 

@@ -9,6 +9,7 @@ from webodt.helpers import get_mimetype
 
 import webodt
 
+
 def render_to(format, template_name,
         dictionary=None, context_instance=None, delete_on_close=True,
         cache=CacheManager, preprocessors=None
@@ -41,8 +42,8 @@ def render_to(format, template_name,
         context_instance = Context(dictionary)
     document = template.render(context_instance, delete_on_close=delete_on_close)
     formatted_document = None
+    cache_mgr = cache()
     if cache:
-        cache_mgr = cache()
         formatted_document = cache_mgr.get(document, format)
     if not formatted_document:
         formatted_document = converter().convert(document, format, delete_on_close=delete_on_close)

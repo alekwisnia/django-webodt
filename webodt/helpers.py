@@ -1,4 +1,3 @@
-# -*- coding: utf8 -*-
 from webodt.conf import WEBODT_DEFAULT_FORMAT, WEBODT_TMP_DIR
 import mimetypes
 import tempfile

@@ -47,4 +47,4 @@ INSTALLED_APPS = (
     'webodt',
 )
 
-from localsettings import *
+from .localsettings import *
