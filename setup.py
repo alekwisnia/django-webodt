@@ -1,9 +1,5 @@
-#!/usr/bin/env python
-# -*- coding: utf8 -*-
-from distutils.core import setup
-
 import os
-from setuptools import find_packages
+from setuptools import setup, find_packages
 # import sys
 # reload(sys).setdefaultencoding("UTF-8")
 
