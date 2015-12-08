@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from importlib import import_module
-from io import StringIO
+from io import StringIO, BytesIO
 from lxml import etree
 import re
 
@@ -41,7 +41,7 @@ def unescape_templatetags_preprocessor(template_content):
 
 
 def xmlfor_preprocessor(template_content):
-    tree = etree.parse(StringIO(template_content))
+    tree = etree.parse(BytesIO(template_content))
 
     # 1. search for xmlfor pairs
     re_xmlfor = re.compile(r'{%\s*xmlfor([^%]*)%}')
@@ -111,7 +111,7 @@ def _find_common_ancestor(tag1, tag2):
 
 
 def _tree_to_string(tree):
-    output = StringIO()
+    output = BytesIO()
     tree.write(output)
     output.seek(0)
     return output.read()
