@@ -102,7 +102,6 @@ class ODFTemplate(object):
         #parse manifest
         paths = []
         manifest = self.get_file("META-INF/manifest.xml")
-        print(manifest)
         # ee = etree.parse(StringIO(manifest))
         ee = etree.XML(manifest)
         for xml_ref in ee.findall(".//{urn:oasis:names:tc:opendocument:xmlns:manifest:1.0}file-entry[@{urn:oasis:names:tc:opendocument:xmlns:manifest:1.0}media-type='text/xml']"):
@@ -211,9 +210,10 @@ class _UnpackedODFHandler(object):
         shutil.copytree(self.dirname, dstdir)
 
 
-class Document(TextIOBase):
+class Document(StringIO):
 
     def __init__(self, filename, mode='rb', buffering=1, delete_on_close=True):
+        print('filename: ', filename)
         super().__init__(filename, mode, buffering)
         self.delete_on_close = delete_on_close
 
