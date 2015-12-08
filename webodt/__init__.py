@@ -34,7 +34,7 @@ class HTMLTemplate(object):
             raise ValueError('Template %s not found in directory %s' % (template_name, WEBODT_TEMPLATE_PATH))
 
     def get_content(self):
-        fd = TextIOBase(self.template_path, 'r')
+        fd = open(self.template_path, 'r')
         content = fd.read()
         fd.close()
         return content
@@ -47,7 +47,7 @@ class HTMLTemplate(object):
         # create and return .html file
         lowlevel_fd, tmpfile = tempfile.mkstemp(suffix='.html', dir=WEBODT_TMP_DIR)
         os.close(lowlevel_fd)
-        fd = TextIOBase(tmpfile, 'w')
+        fd = open(tmpfile, 'w')
         fd.write(smart_str(content))
         fd.close()
         # return HTML document
@@ -119,7 +119,7 @@ class ODFTemplate(object):
             template = Template(template)
             xml_result = template.render(context)
             filename = os.path.join(tmpdir, f_to_process)
-            result_fd = TextIOBase(filename, 'w')
+            result_fd = open(filename, 'w')
             result_fd.write(smart_str(xml_result))
             result_fd.close()
 
@@ -180,25 +180,25 @@ class _UnpackedODFHandler(object):
         self.dirname = dirname
 
     def get_content_xml(self):
-        fd = TextIOBase(os.path.join(self.dirname, 'content.xml'), 'r')
+        fd = open(os.path.join(self.dirname, 'content.xml'), 'r')
         data = fd.read()
         fd.close()
         return data
 
     def get_meta_xml(self):
-        fd = TextIOBase(os.path.join(self.dirname, 'meta.xml'), 'r')
+        fd = open(os.path.join(self.dirname, 'meta.xml'), 'r')
         data = fd.read()
         fd.close()
         return data
 
     def get_styles_xml(self):
-        fd = TextIOBase(os.path.join(self.dirname, 'styles.xml'), 'r')
+        fd = open(os.path.join(self.dirname, 'styles.xml'), 'r')
         data = fd.read()
         fd.close()
         return data
 
     def get_file(self, path):
-        fd = TextIOBase(os.path.join(self.dirname, path), 'r')
+        fd = open(os.path.join(self.dirname, path), 'r')
         data = fd.read()
         fd.close()
         return data
@@ -228,7 +228,7 @@ class HTMLDocument(Document):
     content_type = 'text/html'
 
     def get_content(self):
-        fd = TextIOBase(self.name, 'r')
+        fd = open(self.name, 'r')
         content = fd.read()
         fd.close()
         return content
