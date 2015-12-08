@@ -40,13 +40,13 @@ def render_to(format, template_name,
         context_instance.update(dictionary)
     else:
         context_instance = Context(dictionary)
-    document = template.render(context_instance, delete_on_close=delete_on_close)
+    document = template.render(context_instance)
     formatted_document = None
     cache_mgr = cache()
     if cache:
         formatted_document = cache_mgr.get(document, format)
     if not formatted_document:
-        formatted_document = converter().convert(document, format, delete_on_close=delete_on_close)
+        formatted_document = converter().convert(document, format)
         if cache:
             cache_mgr.set(document, format, formatted_document)
     document.close()
@@ -73,7 +73,7 @@ def render_to_response(template_name,
     """
     mimetype = get_mimetype(format)
     content_fd = render_to(format, template_name, dictionary, context_instance,
-        delete_on_close=True, cache=cache, preprocessors=preprocessors
+        cache=cache, preprocessors=preprocessors
     )
     if iterator:
         content = _ifile(content_fd)
