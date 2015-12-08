@@ -103,7 +103,8 @@ class ODFTemplate(object):
         paths = []
         manifest = self.get_file("META-INF/manifest.xml")
         print(manifest)
-        ee = etree.parse(StringIO(manifest))
+        # ee = etree.parse(StringIO(manifest))
+        ee = etree.XML(manifest)
         for xml_ref in ee.findall("//{urn:oasis:names:tc:opendocument:xmlns:manifest:1.0}file-entry[@{urn:oasis:names:tc:opendocument:xmlns:manifest:1.0}media-type='text/xml']"):
             paths.append(xml_ref.attrib['{urn:oasis:names:tc:opendocument:xmlns:manifest:1.0}full-path'])
         return paths
@@ -168,7 +169,7 @@ class _PackedODFHandler(object):
         fd = zipfile.ZipFile(self.filename)
         data = fd.read(path)
         fd.close()
-        return data.decode('utf-8')
+        return data  # .decode('utf-8')
 
     def unpack(self, dstdir):
         fd = zipfile.ZipFile(self.filename)
@@ -203,7 +204,7 @@ class _UnpackedODFHandler(object):
         fd = open(os.path.join(self.dirname, path), 'r')
         data = fd.read()
         fd.close()
-        return data.decode('utf-8')
+        return data  # .decode('utf-8')
 
     def unpack(self, dstdir):
         os.rmdir(dstdir)
