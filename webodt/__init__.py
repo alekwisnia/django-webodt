@@ -201,7 +201,7 @@ class _UnpackedODFHandler(object):
         fd = open(os.path.join(self.dirname, path), 'r')
         data = fd.read()
         fd.close()
-        return data
+        return str(data)
 
     def unpack(self, dstdir):
         os.rmdir(dstdir)
