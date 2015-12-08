@@ -54,7 +54,7 @@ def xmlfor_preprocessor(template_content):
         re_xmlfor_match = re_xmlfor.search(el.text) if el.text else None
         if re_xmlfor_match:
             forloop_clause = re_xmlfor_match.group(1)
-            xmlfor_starts.append((el, forloop_clause)) # (<div ...>, 'person in people')
+            xmlfor_starts.append((el, forloop_clause))  # (<div ...>, 'person in people')
             el.text = re_xmlfor.sub('', el.text)
         # search for start tag in tail
         re_xmlfor_match = re_xmlfor.search(el.tail) if el.tail else None
@@ -102,7 +102,8 @@ def xmlfor_preprocessor(template_content):
         # after
         ancestor_tail = ancestor_tag.tail or ''
         ancestor_tag.tail = u'%s%s' % (u'{% endfor %}', ancestor_tail)
-    return _tree_to_string(tree)
+    # return _tree_to_string(tree)
+    return etree.tostring(tree, pretty_print=True)
 
 
 def _find_common_ancestor(tag1, tag2):
