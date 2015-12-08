@@ -210,7 +210,7 @@ class _UnpackedODFHandler(object):
         shutil.copytree(self.dirname, dstdir)
 
 
-class Document(StringIO):
+class Document(TextIOBase):
 
     def __init__(self, filename, mode='rb', buffering=1):
         print('filename: ', filename)
