@@ -108,7 +108,7 @@ class ODFTemplate(object):
             paths.append(xml_ref.attrib['{urn:oasis:names:tc:opendocument:xmlns:manifest:1.0}full-path'])
         return paths
 
-    def render(self, context, delete_on_close=True):
+    def render(self, context):
         """ Return rendered ODF (webodt.ODFDocument instance)"""
         # create temp output directory
         tmpdir = tempfile.mkdtemp()
@@ -138,7 +138,7 @@ class ODFTemplate(object):
         # remove directory tree
         shutil.rmtree(tmpdir)
         # return ODF document
-        return ODFDocument(tmpfile, delete_on_close=delete_on_close)
+        return ODFDocument(tmpfile)
 
 
 class _PackedODFHandler(object):
