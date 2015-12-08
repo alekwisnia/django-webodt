@@ -212,15 +212,12 @@ class _UnpackedODFHandler(object):
 
 class Document(StringIO):
 
-    def __init__(self, filename, mode='rb', buffering=1, delete_on_close=True):
+    def __init__(self, filename, mode='rb', buffering=1):
         print('filename: ', filename)
         super().__init__(filename, mode, buffering)
-        self.delete_on_close = delete_on_close
 
     def close(self):
         super().close()
-        if self.delete_on_close:
-            self.delete()
 
     def delete(self):
         os.unlink(self.name)
