@@ -103,7 +103,7 @@ class ODFTemplate(object):
         paths = []
         manifest = self.get_file("META-INF/manifest.xml")
         print(manifest)
-        ee = etree.parse(StringIO(manifest))
+        ee = etree.parse(BytesIO(manifest))
         for xml_ref in ee.findall("//{urn:oasis:names:tc:opendocument:xmlns:manifest:1.0}file-entry[@{urn:oasis:names:tc:opendocument:xmlns:manifest:1.0}media-type='text/xml']"):
             paths.append(xml_ref.attrib['{urn:oasis:names:tc:opendocument:xmlns:manifest:1.0}full-path'])
         return paths
