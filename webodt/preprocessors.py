@@ -41,7 +41,7 @@ def unescape_templatetags_preprocessor(template_content):
 
 
 def xmlfor_preprocessor(template_content):
-    tree = etree.parse(BytesIO(template_content))
+    tree = etree.parse(BytesIO(str(template_content)))
 
     # 1. search for xmlfor pairs
     re_xmlfor = re.compile(r'{%\s*xmlfor([^%]*)%}')
