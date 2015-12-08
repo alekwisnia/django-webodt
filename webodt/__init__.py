@@ -168,7 +168,7 @@ class _PackedODFHandler(object):
         fd = zipfile.ZipFile(self.filename)
         data = fd.read(path)
         fd.close()
-        return data
+        return str(data)
 
     def unpack(self, dstdir):
         fd = zipfile.ZipFile(self.filename)
