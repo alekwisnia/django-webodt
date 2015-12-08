@@ -213,7 +213,7 @@ class _UnpackedODFHandler(object):
 class Document(TextIOBase):
 
     def __init__(self, filename, mode='rb', buffering=1):
-        print('filename: {0}, mode: {1}, buffering: {3}'.format(filename, mode, buffering))
+        print('filename: {0}, mode: {1}, buffering: {2}'.format(filename, mode, buffering))
         super().__init__(filename, mode, buffering)
 
     def close(self):
