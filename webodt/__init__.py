@@ -182,27 +182,35 @@ class _UnpackedODFHandler(object):
         self.dirname = dirname
 
     def get_content_xml(self):
-        fd = open(os.path.join(self.dirname, 'content.xml'), 'r')
-        data = fd.read()
-        fd.close()
+        # fd = open(os.path.join(self.dirname, 'content.xml'), 'r')
+        # data = fd.read()
+        # fd.close()
+        with open(os.path.join(self.dirname, 'content.xml'), 'r') as fd:
+            data = fd.read()
         return data
 
     def get_meta_xml(self):
-        fd = open(os.path.join(self.dirname, 'meta.xml'), 'r')
-        data = fd.read()
-        fd.close()
+        # fd = open(os.path.join(self.dirname, 'meta.xml'), 'r')
+        # data = fd.read()
+        # fd.close()
+        with open(os.path.join(self.dirname, 'meta.xml'), 'r') as fd:
+            data = fd.read()
         return data
 
     def get_styles_xml(self):
-        fd = open(os.path.join(self.dirname, 'styles.xml'), 'r')
-        data = fd.read()
-        fd.close()
+        # fd = open(os.path.join(self.dirname, 'styles.xml'), 'r')
+        # data = fd.read()
+        # fd.close()
+        with open(os.path.join(self.dirname, 'styles.xml'), 'r') as fd:
+            data = fd.read()
         return data
 
     def get_file(self, path):
-        fd = open(os.path.join(self.dirname, path), 'r')
-        data = fd.read()
-        fd.close()
+        # fd = open(os.path.join(self.dirname, path), 'r')
+        # data = fd.read()
+        # fd.close()
+        with open(os.path.join(self.dirname, path), 'r') as fd:
+            data = fd.read()
         return data  # .decode('utf-8')
 
     def unpack(self, dstdir):
@@ -210,12 +218,12 @@ class _UnpackedODFHandler(object):
         shutil.copytree(self.dirname, dstdir)
 
 
-class Document(FileIO):
+class Document(TextIOBase, FileIO):
 
-    def __init__(self, filename, mode='rb', delete_on_close=True):
+    def __init__(self, filename, mode='rb', encoding='utf-8', delete_on_close=True):
         print('filename: {0}, mode: {1}'.format(filename, mode))
+        super().__init__(filename, mode, encoding=encoding)
         self.delete_on_close = delete_on_close
-        super().__init__(filename, mode)
 
     def close(self):
         if self.delete_on_close:
@@ -231,9 +239,11 @@ class HTMLDocument(Document):
     content_type = 'text/html'
 
     def get_content(self):
-        fd = open(self.name, 'r')
-        content = fd.read()
-        fd.close()
+        # fd = open(self.name, 'r')
+        # content = fd.read()
+        # fd.close()
+        with open(self.name, 'r') as fd:
+            content = fd.read()
         return content
 
 

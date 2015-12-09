@@ -20,12 +20,18 @@ class CacheManager(object):
 
     def set(self, odf_document, format, document):
         filename = self.get_filename(odf_document, format)
-        fd = open(filename, 'w')
-        document.seek(0)
-        print(document.read(100))
-        fd.write(document.read())
-        document.seek(0)
-        fd.close()
+        with open(filename, 'w') as fd:
+            document.seek(0)
+            print(document.read(1000))
+            document.seek(0)
+            fd.write(document.read())
+        # fd = open(filename, 'w')
+        # document.seek(0)
+        # print(document.read(100))
+        # document.seek(0)
+        # fd.write(document.read())
+        # document.seek(0)
+        # fd.close()
 
     def delete(self, odf_document, format):
         filename = self.get_filename(odf_document, format)
