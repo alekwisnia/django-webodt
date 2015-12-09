@@ -41,7 +41,7 @@ def render_to(format, template_name,
     else:
         context_instance = Context(dictionary)
     document = template.render(context_instance)
-    print(type(document))
+    print(document.get_content_xml())
     formatted_document = None
     cache_mgr = cache()
     if cache:
