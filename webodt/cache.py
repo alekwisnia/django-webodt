@@ -13,6 +13,7 @@ class CacheManager(object):
             os.makedirs(WEBODT_CACHE_DIR)
 
     def get(self, odf_document, format):
+        print(odf_document)
         filename = self.get_filename(odf_document, format)
         if os.path.isfile(filename):
             return Document(filename, delete_on_close=False)
