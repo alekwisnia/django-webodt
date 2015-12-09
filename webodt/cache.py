@@ -14,6 +14,7 @@ class CacheManager(object):
 
     def get(self, odf_document, format):
         filename = self.get_filename(odf_document, format)
+        print('cached name: ', filename)
         if os.path.isfile(filename):
             return Document(filename, delete_on_close=False)
         return None
