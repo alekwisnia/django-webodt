@@ -61,7 +61,7 @@ class ODFTemplate(object):
 
     format = 'odt'
     content_type = 'application/vnd.oasis.opendocument.text'
-    _fake_timestamp = time.mktime((2010,1,1,0,0,0,0,0,0))
+    _fake_timestamp = time.mktime((2010, 1, 1, 0, 0, 0, 0, 0, 0))
 
     def __init__(self, template_name, preprocessors=None):
         """ Create object by the template name. The template name is relative
@@ -116,9 +116,9 @@ class ODFTemplate(object):
         # store updated content.xml
         for f_to_process in self.get_files_to_process():
             template = self.get_file(f_to_process)
-            print('xml: ', template)
             for preprocess_func in list_preprocessors(self.preprocessors):
                 template = preprocess_func(template)
+                print(template)
             template = Template(template)
             xml_result = template.render(context)
             filename = os.path.join(tmpdir, f_to_process)
