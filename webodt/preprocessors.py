@@ -21,7 +21,7 @@ def list_preprocessors(preprocessors):
 
 def unescape_templatetags_preprocessor(template_content):
     ########## MAY NOT WORK #############
-    template_content = template_content.decode('utf-8')
+    template_content = template_content  # .decode('utf-8')
     #####################################
     replace_map = [
         ('&quot;', '"'),
