@@ -18,7 +18,6 @@ from django.template import Template
 from django.utils.encoding import smart_str
 from webodt.conf import WEBODT_TEMPLATE_PATH, WEBODT_ODF_TEMPLATE_PREPROCESSORS, WEBODT_TMP_DIR
 from webodt.preprocessors import list_preprocessors
-from pprint import pprint
 
 
 class HTMLTemplate(object):
@@ -148,37 +147,28 @@ class _PackedODFHandler(object):
         self.filename = filename
 
     def get_content_xml(self):
-        fd = zipfile.ZipFile(self.filename)
-        data = fd.read('content.xml')
-        print(data)
-        fd.close()
+        with zipfile.ZipFile(self.filename) as fd:
+            data = fd.read('content.xml')
         return data
 
     def get_meta_xml(self):
-        fd = zipfile.ZipFile(self.filename)
-        data = fd.read('meta.xml')
-        pprint(data)
-        fd.close()
+        with zipfile.ZipFile(self.filename) as fd:
+            data = fd.read('meta.xml')
         return data
 
     def get_styles_xml(self):
-        fd = zipfile.ZipFile(self.filename)
-        data = fd.read('styles.xml')
-        pprint(data)
-        fd.close()
+        with zipfile.ZipFile(self.filename) as fd:
+            data = fd.read('styles.xml')
         return data
 
     def get_file(self, path):
-        fd = zipfile.ZipFile(self.filename)
-        data = fd.read(path)
-        pprint(data)
-        fd.close()
-        return data  # .decode('utf-8')
+        with zipfile.ZipFile(self.filename) as fd:
+            data = fd.read(path)
+        return data
 
     def unpack(self, dstdir):
-        fd = zipfile.ZipFile(self.filename)
-        fd.extractall(path=dstdir)
-        fd.close()
+        with zipfile.ZipFile(self.filename) as fd:
+            fd.extractall(path=dstdir)
 
 
 class _UnpackedODFHandler(object):
@@ -187,39 +177,23 @@ class _UnpackedODFHandler(object):
         self.dirname = dirname
 
     def get_content_xml(self):
-        # fd = open(os.path.join(self.dirname, 'content.xml'), 'r')
-        # data = fd.read()
-        # fd.close()
         with open(os.path.join(self.dirname, 'content.xml'), 'r') as fd:
             data = fd.read()
-        pprint(data)
         return data
 
     def get_meta_xml(self):
-        # fd = open(os.path.join(self.dirname, 'meta.xml'), 'r')
-        # data = fd.read()
-        # fd.close()
         with open(os.path.join(self.dirname, 'meta.xml'), 'r') as fd:
             data = fd.read()
-        pprint(data)
         return data
 
     def get_styles_xml(self):
-        # fd = open(os.path.join(self.dirname, 'styles.xml'), 'r')
-        # data = fd.read()
-        # fd.close()
         with open(os.path.join(self.dirname, 'styles.xml'), 'r') as fd:
             data = fd.read()
-        pprint(data)
         return data
 
     def get_file(self, path):
-        # fd = open(os.path.join(self.dirname, path), 'r')
-        # data = fd.read()
-        # fd.close()
         with open(os.path.join(self.dirname, path), 'r') as fd:
             data = fd.read()
-        pprint(data)
         return data
 
     def unpack(self, dstdir):
@@ -273,9 +247,6 @@ class HTMLDocument(Document):
     content_type = 'text/html'
 
     def get_content(self):
-        # fd = open(self.name, 'r')
-        # content = fd.read()
-        # fd.close()
         with open(self.name, 'r') as fd:
             content = fd.read()
         return content
