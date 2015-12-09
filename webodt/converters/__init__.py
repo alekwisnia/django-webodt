@@ -28,8 +28,6 @@ class ODFConverter(object):
         """ convert document and return file-like object representing output
         document """
         if format == 'odt':
-            document.seek(0)
-            print('convert: ', document.read())
             return document
         raise NotImplementedError("Should be implemented in subclass")
 
