@@ -118,13 +118,11 @@ class ODFTemplate(object):
             template = self.get_file(f_to_process)
             for preprocess_func in list_preprocessors(self.preprocessors):
                 template = preprocess_func(template)
-                print(template)
             template = Template(template)
             xml_result = template.render(context)
             filename = os.path.join(tmpdir, f_to_process)
-            result_fd = open(filename, 'w')
-            result_fd.write(smart_str(xml_result))
-            result_fd.close()
+            with open(filename, 'w') as result_fd:
+                result_fd.write(smart_str(xml_result))
 
         lowlevel_fd, tmpfile = tempfile.mkstemp(suffix='.odt', dir=WEBODT_TMP_DIR)
         os.close(lowlevel_fd)
