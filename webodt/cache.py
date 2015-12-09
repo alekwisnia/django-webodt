@@ -13,7 +13,6 @@ class CacheManager(object):
             os.makedirs(WEBODT_CACHE_DIR)
 
     def get(self, odf_document, format):
-        print(odf_document)
         filename = self.get_filename(odf_document, format)
         if os.path.isfile(filename):
             return Document(filename, delete_on_close=False)
@@ -22,8 +21,6 @@ class CacheManager(object):
     def set(self, odf_document, format, document):
         filename = self.get_filename(odf_document, format)
         with open(filename, 'w') as fd:
-            document.seek(0)
-            print(document.read(1000))
             document.seek(0)
             fd.write(document.read())
         # fd = open(filename, 'w')
@@ -42,7 +39,6 @@ class CacheManager(object):
     def get_filename(self, odf_document, format):
         sha1 = hashlib.new('sha1')
         odf_document.seek(0)
-        print(odf_document)
         odf_data = odf_document.read()
         sha1.update(odf_data)
         odf_document.seek(0)
