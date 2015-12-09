@@ -30,7 +30,7 @@ class OpenOfficeODFConverter(ODFConverter):
         ]
         if document.format == 'html':
             inputprops.append(PropertyValue('FilterName', 0, 'HTML (StarWriter)', 0))
-        doc = desktop.loadComponentFromURL('private:stream','_blank',0, tuple(inputprops))
+        doc = desktop.loadComponentFromURL('private:stream', '_blank', 0, tuple(inputprops))
         ### Update document links
         # skip ...
         ### Update document indexes
