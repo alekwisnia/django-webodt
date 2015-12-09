@@ -18,8 +18,8 @@ setup(
     description=u'ODF template handler and odt to html, pdf, doc, etc converter',
     long_description=README,
     install_requires=[
-        'Django',
-        'lxml',
+        'Django==1.8.7',
+        'lxml==3.5.0',
     ],
     classifiers=(
         'Development Status :: 4 - Beta',
