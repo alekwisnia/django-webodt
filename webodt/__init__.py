@@ -149,6 +149,7 @@ class _PackedODFHandler(object):
     def get_content_xml(self):
         fd = zipfile.ZipFile(self.filename)
         data = fd.read('content.xml')
+        print(data)
         fd.close()
         return data
 
