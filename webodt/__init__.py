@@ -8,6 +8,7 @@ ODFTemplate accepts both packed (regular) or unpacked .odt documents as
 templates. Unpacked ODFTemplate is nothing more than just unzipped .odt file.
 """
 import os
+import sys
 import zipfile
 import tempfile
 import shutil
@@ -218,17 +219,42 @@ class _UnpackedODFHandler(object):
         shutil.copytree(self.dirname, dstdir)
 
 
-class Document(TextIOWrapper, FileIO):
+class Document(object):
 
-    def __init__(self, filename, mode='rb', encoding='utf-8', delete_on_close=True):
-        print('filename: {0}, mode: {1}'.format(filename, mode))
-        super().__init__(filename, mode, encoding=encoding)
+    def __init__(self, f, mode='rb', delete_on_close=True, *args, **kwargs):
+        self.file = f if hasattr(f, 'read') else open(f)
         self.delete_on_close = delete_on_close
+        self.close_file = kwargs.pop('close', True)
+
+    def __enter__(self):
+        return self
+
+    def __exit__(self, exc_type, exc_val, exc_tb):
+        if not self.close_file:
+            return
+        exit = getattr(self.file, '__exit__', None)
+        if exit is not None:
+            return exit(exc_type, exc_val, exc_tb)
+        else:
+            exit = getattr(self.file, 'close', None)
+            if exit is not None:
+                exit()
+
+    def __getattr__(self, item):
+        return getattr(self.file, item)
+
+    def __iter__(self):
+        return self
+
+    def __next__(self):
+        return next(self.file)
+
+    next = __next__
 
     def close(self):
         if self.delete_on_close:
             self.delete()
-        super().close()
+        self.close()
 
     def delete(self):
         os.unlink(self.name)
