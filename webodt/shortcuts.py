@@ -41,7 +41,6 @@ def render_to(format, template_name,
     else:
         context_instance = Context(dictionary)
     document = template.render(context_instance)
-    print('shortcuts document: ', document.read())
     formatted_document = None
     cache_mgr = cache()
     if cache:

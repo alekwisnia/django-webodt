@@ -34,7 +34,6 @@ class CacheManager(object):
         sha1 = hashlib.new('sha1')
         odf_document.seek(0)
         odf_data = odf_document.read()
-        print(odf_data)
         sha1.update(odf_data)
         odf_document.seek(0)
         sha1.update(format.encode('utf-8'))
