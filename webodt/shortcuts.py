@@ -48,6 +48,8 @@ def render_to(format, template_name,
     if not formatted_document:
         formatted_document = converter().convert(document, format, delete_on_close)
         if cache:
+            print('render_to: ', document.read())
+            print('render_to: ', formatted_document.read())
             cache_mgr.set(document, format, formatted_document)
     document.close()
     return formatted_document
