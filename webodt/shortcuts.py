@@ -50,7 +50,6 @@ def render_to(format, template_name,
         if cache:
             cache_mgr.set(document, format, formatted_document)
     document.close()
-    print(formatted_document)
     return formatted_document
 
 
