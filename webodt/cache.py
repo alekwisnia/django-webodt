@@ -34,6 +34,7 @@ class CacheManager(object):
 
     def get_filename(self, odf_document, format):
         print('cache get_filename: ', odf_document.read())
+        print('cache get_filename: ', odf_document.read())
         sha1 = hashlib.new('sha1')
         odf_document.seek(0)
         odf_data = odf_document.read()
