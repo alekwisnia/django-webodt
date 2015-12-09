@@ -106,7 +106,7 @@ def xmlfor_preprocessor(template_content):
         ancestor_tail = ancestor_tag.tail or ''
         ancestor_tag.tail = u'%s%s' % (u'{% endfor %}', ancestor_tail)
     # return _tree_to_string(tree)
-    return etree.tostring(tree, pretty_print=True)
+    return etree.tostring(tree)  # may be needed
 
 
 def _find_common_ancestor(tag1, tag2):

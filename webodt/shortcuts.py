@@ -43,7 +43,6 @@ def render_to(format, template_name,
     document = template.render(context_instance)
     formatted_document = None
     cache_mgr = cache()
-    print('render_to cache: ', cache)
     if cache:
         formatted_document = cache_mgr.get(document, format)
     if not formatted_document:

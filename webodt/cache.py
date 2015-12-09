@@ -11,7 +11,6 @@ class CacheManager(object):
     def __init__(self):
         if not os.path.isdir(WEBODT_CACHE_DIR):
             os.makedirs(WEBODT_CACHE_DIR)
-            print('CacheManager __init__: ', os.path.isdir(WEBODT_CACHE_DIR))
 
     def get(self, odf_document, format):
         filename = self.get_filename(odf_document, format)
