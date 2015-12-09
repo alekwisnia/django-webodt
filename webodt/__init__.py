@@ -18,6 +18,7 @@ from django.template import Template
 from django.utils.encoding import smart_str
 from webodt.conf import WEBODT_TEMPLATE_PATH, WEBODT_ODF_TEMPLATE_PREPROCESSORS, WEBODT_TMP_DIR
 from webodt.preprocessors import list_preprocessors
+from pprint import pprint
 
 
 class HTMLTemplate(object):
@@ -156,21 +157,21 @@ class _PackedODFHandler(object):
     def get_meta_xml(self):
         fd = zipfile.ZipFile(self.filename)
         data = fd.read('meta.xml')
-        print(data)
+        pprint(data)
         fd.close()
         return data
 
     def get_styles_xml(self):
         fd = zipfile.ZipFile(self.filename)
         data = fd.read('styles.xml')
-        print(data)
+        pprint(data)
         fd.close()
         return data
 
     def get_file(self, path):
         fd = zipfile.ZipFile(self.filename)
         data = fd.read(path)
-        print(data)
+        pprint(data)
         fd.close()
         return data  # .decode('utf-8')
 
@@ -191,7 +192,7 @@ class _UnpackedODFHandler(object):
         # fd.close()
         with open(os.path.join(self.dirname, 'content.xml'), 'r') as fd:
             data = fd.read()
-        print(data)
+        pprint(data)
         return data
 
     def get_meta_xml(self):
@@ -200,7 +201,7 @@ class _UnpackedODFHandler(object):
         # fd.close()
         with open(os.path.join(self.dirname, 'meta.xml'), 'r') as fd:
             data = fd.read()
-        print(data)
+        pprint(data)
         return data
 
     def get_styles_xml(self):
@@ -209,7 +210,7 @@ class _UnpackedODFHandler(object):
         # fd.close()
         with open(os.path.join(self.dirname, 'styles.xml'), 'r') as fd:
             data = fd.read()
-        print(data)
+        pprint(data)
         return data
 
     def get_file(self, path):
@@ -218,7 +219,7 @@ class _UnpackedODFHandler(object):
         # fd.close()
         with open(os.path.join(self.dirname, path), 'r') as fd:
             data = fd.read()
-        print(data)
+        pprint(data)
         return data
 
     def unpack(self, dstdir):
