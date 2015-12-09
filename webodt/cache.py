@@ -36,7 +36,7 @@ class CacheManager(object):
         odf_data = odf_document.read()
         sha1.update(odf_data)
         odf_document.seek(0)
-        sha1.update(format)
+        sha1.update(format.encode('utf-8'))
         sha1.update(settings.SECRET_KEY.encode('utf-8'))
         digest = sha1.hexdigest()
         filename = os.path.join(WEBODT_CACHE_DIR, '%s.%s' % (digest, format))
