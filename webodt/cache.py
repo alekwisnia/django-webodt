@@ -22,6 +22,7 @@ class CacheManager(object):
         filename = self.get_filename(odf_document, format)
         fd = open(filename, 'w')
         document.seek(0)
+        print(document.read(100))
         fd.write(document.read())
         document.seek(0)
         fd.close()
