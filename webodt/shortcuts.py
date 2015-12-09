@@ -46,7 +46,7 @@ def render_to(format, template_name,
     if cache:
         formatted_document = cache_mgr.get(document, format)
     if not formatted_document:
-        formatted_document = converter().convert(document, format)
+        formatted_document = converter().convert(document, format, delete_on_close)
         if cache:
             cache_mgr.set(document, format, formatted_document)
     document.close()
