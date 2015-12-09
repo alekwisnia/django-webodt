@@ -22,8 +22,8 @@ class Command(BaseCommand):
     )
 
     office_location_variants = [
-        # '/usr/lib/libreoffice/program/soffice.bin',
-        '/usr/lib/openoffice/program/soffice.bin',
+        '/usr/lib/libreoffice/program/soffice.bin',
+        # '/usr/lib/openoffice/program/soffice.bin',
     ]
 
     def handle(self, *args, **options):
