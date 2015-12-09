@@ -50,7 +50,7 @@ class OpenOfficeODFConverter(ODFConverter):
         doc.dispose()
         doc.close(True)
         fd.close()
-        fd = Document(output_filename, mode='r', delete_on_close=delete_on_close)
+        fd = Document(output_filename, mode='rb', delete_on_close=delete_on_close)
         print('oo_convert: ', fd.read())
         return fd
 
