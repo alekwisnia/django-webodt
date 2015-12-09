@@ -106,6 +106,7 @@ class ODFTemplate(object):
         ee = etree.XML(manifest)
         for xml_ref in ee.findall(".//{urn:oasis:names:tc:opendocument:xmlns:manifest:1.0}file-entry[@{urn:oasis:names:tc:opendocument:xmlns:manifest:1.0}media-type='text/xml']"):
             paths.append(xml_ref.attrib['{urn:oasis:names:tc:opendocument:xmlns:manifest:1.0}full-path'])
+        print('files: ', paths)
         return paths
 
     def render(self, context):
