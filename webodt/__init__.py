@@ -257,19 +257,16 @@ class ODFDocument(Document):
     content_type = 'application/vnd.oasis.opendocument.text'
 
     def get_content_xml(self):
-        fd = zipfile.ZipFile(self.name)
-        data = fd.read('content.xml')
-        fd.close()
+        with zipfile.ZipFile(self.name) as fd:
+            data = fd.read('content.xml')
         return data
 
     def get_meta_xml(self):
-        fd = zipfile.ZipFile(self.name)
-        data = fd.read('meta.xml')
-        fd.close()
+        with zipfile.ZipFile(self.name) as fd:
+            data = fd.read('meta.xml')
         return data
 
     def get_styles_xml(self):
-        fd = zipfile.ZipFile(self.name)
-        data = fd.read('styles.xml')
-        fd.close()
+        with zipfile.ZipFile(self.name) as fd:
+            data = fd.read('styles.xml')
         return data
