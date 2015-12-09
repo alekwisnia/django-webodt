@@ -222,7 +222,7 @@ class _UnpackedODFHandler(object):
 class Document(object):
 
     def __init__(self, f, mode='rb', delete_on_close=True, *args, **kwargs):
-        self.file = f if hasattr(f, 'read') else open(f)
+        self.file = f if hasattr(f, 'read') else open(f, mode, encoding='utf-8')
         self.delete_on_close = delete_on_close
         self.close_file = kwargs.pop('close', True)
 
