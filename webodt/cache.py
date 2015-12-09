@@ -31,10 +31,10 @@ class CacheManager(object):
             os.unlink(filename)
 
     def get_filename(self, odf_document, format):
-        print('mode: ', odf_document.mode)
         sha1 = hashlib.new('sha1')
         odf_document.seek(0)
         odf_data = odf_document.read()
+        print(odf_data)
         sha1.update(odf_data)
         odf_document.seek(0)
         sha1.update(format.encode('utf-8'))
