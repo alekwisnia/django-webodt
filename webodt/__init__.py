@@ -8,7 +8,6 @@ ODFTemplate accepts both packed (regular) or unpacked .odt documents as
 templates. Unpacked ODFTemplate is nothing more than just unzipped .odt file.
 """
 import os
-import sys
 import zipfile
 import tempfile
 import shutil
