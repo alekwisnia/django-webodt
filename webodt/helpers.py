@@ -14,7 +14,7 @@ def get_mimetype(format):
 
 
 def guess_format_and_filename(filename, format):
-    format = format.decode('utf-8')
+    format = format
     """ guess format and filename of the output document
 
     Either format and filename or both can be undefined (None) variables.
