@@ -4,6 +4,7 @@ import tempfile
 from django.utils.importlib import import_module
 from webodt.conf import WEBODT_DEFAULT_FORMAT, WEBODT_CONVERTER, WEBODT_TMP_DIR
 
+
 def converter():
     """ Create and return Converter instance
     on a basis of ``WEBODT_CONVERTER`` settings variable
