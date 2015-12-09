@@ -254,7 +254,7 @@ class Document(object):
     def close(self):
         if self.delete_on_close:
             self.delete()
-        self.close()
+        self.file.close()
 
     def delete(self):
         os.unlink(self.name)
