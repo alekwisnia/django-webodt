@@ -19,6 +19,8 @@ class CacheManager(object):
         return None
 
     def set(self, odf_document, format, document):
+        print(odf_document.read())
+        print(document.read())
         filename = self.get_filename(odf_document, format)
         # with open(filename, 'w') as fd:
         with open(filename, 'wb') as fd:

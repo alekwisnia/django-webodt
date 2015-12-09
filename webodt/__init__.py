@@ -143,7 +143,6 @@ class ODFTemplate(object):
 class _PackedODFHandler(object):
 
     def __init__(self, filename):
-        print('file handler: ', open(filename, 'rb').read())
         self.filename = filename
 
     def get_content_xml(self):
