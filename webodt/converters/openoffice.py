@@ -14,6 +14,7 @@ OOO_CONNECTION = 'socket,host=%s,port=%s;urp;StarOffice.ComponentContext' % WEBO
 class OpenOfficeODFConverter(ODFConverter):
 
     def convert(self, document, format=None, output_filename=None, delete_on_close=True):
+        print('oo_convert: ', document.read())
         output_filename, format = guess_format_and_filename(output_filename, format)
         ### Do the OpenOffice component dance
         context = uno.getComponentContext()
@@ -50,8 +51,7 @@ class OpenOfficeODFConverter(ODFConverter):
         doc.dispose()
         doc.close(True)
         fd.close()
-        fd = Document(output_filename, mode='rb', delete_on_close=delete_on_close)
-        print('oo_convert: ', fd.read())
+        fd = Document(output_filename, mode='r', delete_on_close=delete_on_close)
         return fd
 
 
