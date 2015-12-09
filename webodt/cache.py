@@ -41,6 +41,7 @@ class CacheManager(object):
     def get_filename(self, odf_document, format):
         sha1 = hashlib.new('sha1')
         odf_document.seek(0)
+        print(odf_document)
         odf_data = odf_document.read()
         sha1.update(odf_data)
         odf_document.seek(0)
