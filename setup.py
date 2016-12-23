@@ -18,7 +18,7 @@ setup(
     description=u'ODF template handler and odt to html, pdf, doc, etc converter',
     long_description=README,
     install_requires=[
-        'Django==1.9.2',
+        'Django>=1.9.2',
         'lxml==3.5.0',
     ],
     classifiers=(
