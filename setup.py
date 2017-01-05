@@ -19,7 +19,7 @@ setup(
     long_description=README,
     install_requires=[
         'Django>=1.9.2',
-        'lxml==3.5.0',
+        'lxml',
     ],
     classifiers=(
         'Development Status :: 4 - Beta',
