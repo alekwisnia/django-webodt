@@ -46,7 +46,7 @@ def render_to(format, template_name,
     if cache:
         formatted_document = cache_mgr.get(document, format)
     if not formatted_document:
-        formatted_document = converter().convert(document, format, delete_on_close)
+        formatted_document = converter().convert(document, format=format, delete_on_close=delete_on_close)
         if cache:
             document.seek(0)
             formatted_document.seek(0)
@@ -80,6 +80,8 @@ def render_to_response(template_name,
     if iterator:
         content = _ifile(content_fd)
     else:
+        # file is now binary
+        content_fd.seek(0)
         content = content_fd.read()
     response = HttpResponse(content, mimetype=mimetype)
     if not filename:
